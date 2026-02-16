@@ -31,4 +31,12 @@ jobs:
         working-directory: microservices/currency-conversion-service
         run: mvn -B clean verify
 
+      - name: uploadJAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: currency-converter.jar
+          path: microservices/currency-conversion-service/target/*.jar
+
+          
+
   

@@ -41,3 +41,5 @@ jobs:
         run: |
           cd microservices/currency-conversion-service
           docker build -t currency-conversion-service:latest .
+      - name: list docker images
+        run: docker images

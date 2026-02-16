@@ -35,4 +35,8 @@ jobs:
 
       - name: package
         run: mvn package
+
+      - name: Debug folders
+        run: ls -R
+
   

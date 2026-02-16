@@ -37,6 +37,7 @@ jobs:
           name: currency-converter.jar
           path: microservices/currency-conversion-service/target/*.jar
 
-          
-
-  
+      - name: Building dockeriamges
+        run: |
+          cd microservices/currency-conversion-service
+          docker build -t currency-conversion-service:latest .

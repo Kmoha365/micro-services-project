@@ -1,0 +1,37 @@
+name: currency-conversion-service-CI
+
+on:
+  push:
+    paths:
+      - 'currency-conversion-service/**'
+      - '.github/workflows/currency-conversion.yml'
+      
+    branches: ["Main"]
+  pull_request:
+    paths: 
+      - 'currency-conversion-service/**'
+     
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+      - name: compile
+        run: mvn compile
+
+      - name: test
+        run: mvn run
+
+      - name: package
+        run: mvn package
+  

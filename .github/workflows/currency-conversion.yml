@@ -27,6 +27,8 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
+      - name: Debug folders
+        run: ls -R
       - name: compile
         run: mvn compile
 
@@ -36,7 +38,6 @@ jobs:
       - name: package
         run: mvn package
 
-      - name: Debug folders
-        run: ls -R
+
 
   

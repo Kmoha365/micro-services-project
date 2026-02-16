@@ -6,7 +6,7 @@ on:
       - 'currency-conversion-service/**'
       - '.github/workflows/currency-conversion.yml'
       
-    branches: ["Main"]
+    branches: ["master"]
   pull_request:
     paths: 
       - 'currency-conversion-service/**'

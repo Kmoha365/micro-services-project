@@ -27,17 +27,8 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - name: Debug folders
-        run: ls -R
-      - name: compile
-        run: mvn compile
-
-      - name: test
-        run: mvn run
-
-      - name: package
-        run: mvn package
-
-
+      - name: build project
+        working-directory: microservices/currency-conversion-service
+        run: mvn -B clean verify
 
   

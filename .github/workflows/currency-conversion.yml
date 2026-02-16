@@ -3,13 +3,14 @@ name: currency-conversion-service-CI
 on:
   push:
     paths:
-      - 'currency-conversion-service/**'
+    
+      - 'microservices/currency-conversion-service/**'
       - '.github/workflows/currency-conversion.yml'
       
     branches: ["master"]
   pull_request:
     paths: 
-      - 'currency-conversion-service/**'
+      - 'microservices/currency-conversion-service/**'
      
 jobs:
   build:

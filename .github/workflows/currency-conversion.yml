@@ -41,5 +41,17 @@ jobs:
         run: |
           cd microservices/currency-conversion-service
           docker build -t currency-conversion-service:latest .
+
       - name: list docker images
         run: docker images
+
+      - name: dockerhublogin
+        run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{secrets.DOCKER_USER}}" --password-stdin
+
+      - name: Tag Docker Image
+        run: |
+          docker tag currency-conversion:latest ${{ secrets.DOCKER_USER }}/currency-conversion:latest
+
+      - name: push image
+        run: |
+          docker push ${{secrets.DOCKER_USER}}/currency-conversion:latest

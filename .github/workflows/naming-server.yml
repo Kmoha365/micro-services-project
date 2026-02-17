@@ -30,3 +30,9 @@ jobs:
           with:
             name: name-server.jar
             path: microservices/naming-server/target/*.jar
+        - name: build image
+          run: |
+            cd microservices/naming-server
+            docker build -t naming-server:latest .
+        - name: list images
+          run: docker images

@@ -36,3 +36,17 @@ jobs:
             docker build -t naming-server:latest .
         - name: list images
           run: docker images
+      # 7. Login to DockerHub
+        - name: Login to DockerHub
+          run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+
+      # 8. Tag Docker Image
+        - name: Tag Docker Image
+          run: |
+            docker tag naming-server:latest ${{ secrets.DOCKER_USER }}/currency-conversion-service:latest
+
+      # 9. Push Docker Image
+        - name: Push Docker Image
+          run: |
+            docker push ${{ secrets.DOCKER_USER }}/naming-server:latest
+

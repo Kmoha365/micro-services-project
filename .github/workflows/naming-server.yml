@@ -43,7 +43,7 @@ jobs:
       # 8. Tag Docker Image
         - name: Tag Docker Image
           run: |
-            docker tag naming-server:latest ${{ secrets.DOCKER_USER }}/currency-conversion-service:latest
+            docker tag naming-server:latest ${{ secrets.DOCKER_USER }}/naming-server:latest
 
       # 9. Push Docker Image
         - name: Push Docker Image

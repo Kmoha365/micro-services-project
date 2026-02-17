@@ -1,0 +1,32 @@
+name: naming-server-CI
+on:
+  push: 
+    branches: ["master"]
+    paths:
+      - 'microservices/naming-server/**'
+      - '.github/workflows/naming-server.yml'
+  pull_request:
+    paths:
+      - 'microservices/naming-server/**'
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      timeout-minutes: 20
+      steps:
+        - name: checkout
+          uses: actions/checkout@v4
+        - name: setup java
+          uses: actions/setup-java@v4
+          with:
+            distribution: temurin
+            java-version: 21
+            cache: maven
+        - name: build
+          working-directory: microservices/naming-server 
+          run: mvn -B clean verify
+
+        - name: upload JAR
+          uses: actions/upload-artifact@v4
+          with:
+            name: name-server.jar
+            path: microservices/naming-server/target/*.jar

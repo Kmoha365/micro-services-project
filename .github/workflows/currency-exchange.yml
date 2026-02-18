@@ -1,4 +1,5 @@
 name: currency-exchange-service-CI
+
 on:
   push:
     branches: ["master"]
@@ -7,21 +8,31 @@ on:
       - '.github/workflows/currency-exchange-service-CI.yml'
 
   pull_request:
-   paths:
-        - 'microservices/currency-exchange-service/**'
+    paths:
+      - 'microservices/currency-exchange-service/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: setup Java
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
           cache: maven
-      - name: build package
+
+      - name: Build Package
+        working-directory: microservices/currency-exchange-service
         run: mvn -B clean verify
 
+      - name: Upload JAR (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: currency-exchange-jar
+          path: microservices/currency-exchange-service/target/*.jar

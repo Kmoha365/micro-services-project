@@ -14,3 +14,17 @@ jobs:
     steps:
       - name: chekout
         uses: actions/checkout@v4
+      - name: setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: build
+        run: mvn -B clean verify
+      - name: upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-cloud-server
+          path: microservices/spring-cloud-config-server/target/*.jar

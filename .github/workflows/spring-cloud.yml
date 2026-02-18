@@ -1,0 +1,16 @@
+name: spring-cloud-ci
+on:
+  push:
+    branches: ["master"]
+    paths: 
+        - 'microservices/spring-cloud-config-server/**'
+        - '.github/workflows/spring-cloud.yml'
+  pull_request:
+    paths:
+      - 'microservices/spring-cloud-config-server/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: chekout
+        uses: actions/checkout@v4

@@ -41,8 +41,13 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: microservices/currency-exchange-service
+          args: >
+           -Dsonar.projectKey=kmoha365_micro-services-project
+           -Dsonar.organization=kmoha365
+           -Dsonar.java.binaries=target/classes
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
 
       - name: Upload JAR

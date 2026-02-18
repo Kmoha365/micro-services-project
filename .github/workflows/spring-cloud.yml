@@ -37,6 +37,13 @@ jobs:
       - name: Build
         working-directory: microservices/spring-cloud-config-server
         run: mvn -B clean verify
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: microservices/currency-exchange-service
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4

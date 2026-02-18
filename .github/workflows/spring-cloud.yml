@@ -61,3 +61,6 @@ jobs:
         run: |
             cd microservices/spring-cloud-config-server
             docker build -t spring-cloud-server:latest .
+
+      - name: list docker iamges
+        run: docker images

@@ -37,16 +37,17 @@ jobs:
       - name: Build
         working-directory: microservices/spring-cloud-config-server
         run: mvn -B clean verify
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: microservices/currency-exchange-service
-          args: >
-           -Dsonar.projectKey=kmoha365_micro-services-project
-           -Dsonar.organization=kmoha365
-           -Dsonar.java.binaries=target/classes
+      - name: Build and analyze (SonarCloud)
+        working-directory: microservices/currency-exchange-service
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+         mvn -B clean verify \
+         org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+         -Dsonar.projectKey=Kmoha365_micro-services-project \
+         -Dsonar.organization=kmoha365 \
+         -Dsonar.host.url=https://sonarcloud.io
+
 
 
 

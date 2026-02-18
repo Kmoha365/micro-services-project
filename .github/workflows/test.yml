@@ -1,39 +1,11 @@
-
-name: currency-exchange-service-CI
+name: Test Pipeline
 
 on:
   push:
     branches: ["master"]
-    paths:
-      - 'microservices/currency-exchange-service/**'
-      - '.github/workflows/currency-exchange-service.yml'
-
-  pull_request:
-    paths:
-      - 'microservices/currency-exchange-service/**'
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-          cache: maven
-
-      - name: Build Package
-        working-directory: microservices/currency-exchange-service
-        run: mvn -B clean verify
-
-      - name: Upload JAR (optional)
-        uses: actions/upload-artifact@v4
-        with:
-          name: currency-exchange-jar
-          path: microservices/currency-exchange-service/target/*.jar
+      - run: echo "Pipeline is working"

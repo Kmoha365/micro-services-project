@@ -56,3 +56,5 @@ jobs:
         with:
           name: spring-cloud-config-server-jar
           path: microservices/spring-cloud-config-server/target/*.jar
+      - name: build image
+        run: docker build -t spring-cloud-server:latest .

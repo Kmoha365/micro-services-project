@@ -31,8 +31,8 @@
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
     <properties>
-  <sonar.organization>kmoha365</sonar.organization>
-</properties>
+        <sonar.organization>kmoha365</sonar.organization>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

@@ -1,31 +1,40 @@
 name: spring-cloud-ci
+
 on:
   push:
     branches: ["master"]
-    paths: 
-        - 'microservices/spring-cloud-config-server/**'
-        - '.github/workflows/spring-cloud.yml'
+    paths:
+      - 'microservices/spring-cloud-config-server/**'
+      - '.github/workflows/spring-cloud.yml'
+
   pull_request:
     paths:
       - 'microservices/spring-cloud-config-server/**'
+
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
-      - name: chekout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: setup java
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
           cache: maven
 
-      - name: build
+      - name: Build
         working-directory: microservices/spring-cloud-config-server
         run: mvn -B clean verify
-      - name: upload JAR
+
+      - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: spring-cloud-server
+          name: spring-cloud-config-server-jar
           path: microservices/spring-cloud-config-server/target/*.jar

@@ -63,4 +63,4 @@ jobs:
       # 9. Push Docker Image
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/currency-exchange-service:latest
+          docker push ${{ secrets.DOCKER_USER }}/kmoha365:latest

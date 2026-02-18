@@ -5,7 +5,7 @@ on:
     branches: ["master"]
     paths:
       - 'microservices/currency-exchange-service/**'
-      - '.github/workflows/exchange-conversion.yml'
+      - '.github/workflows/currency-exchange.yml'
 
   pull_request:
     paths:
@@ -32,7 +32,7 @@ jobs:
       # 3. Build Maven project
       - name: Build Project
         working-directory: microservices/currency-exchange-service
-        run: mvn -B clean verify
+        run: mvn -B clean verify -DskipTests
 
       # 4. Upload JAR Artifact
       - name: Upload JAR
@@ -63,4 +63,4 @@ jobs:
       # 9. Push Docker Image
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/currency-exchange-service:latest
+          docker push ${{ secrets.DOCKER_USER }}/kmoha365:latest

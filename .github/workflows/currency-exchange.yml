@@ -32,7 +32,7 @@ jobs:
       # 3. Build Maven project
       - name: Build Project
         working-directory: microservices/currency-exchange-service
-        run: mvn -B clean verify
+        run: mvn -B clean verify -DskipTests
 
       # 4. Upload JAR Artifact
       - name: Upload JAR

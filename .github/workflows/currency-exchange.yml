@@ -5,7 +5,7 @@ on:
     branches: ["master"]
     paths:
       - 'microservices/currency-exchange-service/**'
-      - '.github/workflows/currency-exchange-service-CI.yml'
+      - '.github/workflows/currency-exchange-service.yml'
 
   pull_request:
     paths:

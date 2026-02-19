@@ -41,3 +41,9 @@ jobs:
         with:
           name: limt-service.jar
           path: microservices/limits-service/target/*.jar
+      - name: docker image build
+        run: |
+          cd microservices/limits-service
+          docker build -t limits-service:latest .
+      - name: list docker iamges
+        run: docker images

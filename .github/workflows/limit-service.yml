@@ -1,0 +1,31 @@
+name: limits-service
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - 'microservices/limits-service/**'
+      - '.github/workflows/limits.yml'
+  pull_request:
+    paths:
+      - 'microservices/limits-service/**'
+
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: gitleak scan
+      uses: actions/gitleaks-action@v2
+      run: detect --source . --verbose
+    - name: setup java
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 21
+        cache: maven
+    - name: build package
+      working-directory: microservices/limits-service
+      run: mvn -B clean verify

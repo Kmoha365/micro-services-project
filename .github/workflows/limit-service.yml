@@ -11,7 +11,7 @@ on:
     paths:
       - 'microservices/limits-service/**'
 
-  workflow_dispatch:
+#workflow_dispatch:
 
 jobs:
   build:
@@ -36,3 +36,8 @@ jobs:
       - name: Build Package
         working-directory: microservices/limits-service
         run: mvn -B clean verify -DskipTests
+      - name: upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: limt-service.jar
+          path: microservices/limits-service/target/*.jar
